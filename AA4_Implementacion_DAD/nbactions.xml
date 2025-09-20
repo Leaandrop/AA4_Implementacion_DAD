@@ -1,0 +1,32 @@
+
+<actions>
+  <action>
+    <actionName>run</actionName>
+    <goals>
+      <goal>process-classes</goal>
+      <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
+    </goals>
+    <properties>
+      <exec.executable>java</exec.executable>
+      <exec.args>-classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+      <exec.mainClass>com.mycompany.ui.MainConsole</exec.mainClass>
+      <exec.appArgs></exec.appArgs>
+    </properties>
+  </action>
+
+  <action>
+    <actionName>debug</actionName>
+    <goals>
+      <goal>process-classes</goal>
+      <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
+    </goals>
+    <properties>
+      <exec.executable>java</exec.executable>
+      <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+      <exec.mainClass>com.mycompany.ui.MainConsole</exec.mainClass>
+      <exec.appArgs></exec.appArgs>
+      <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+      <jpda.listen>true</jpda.listen>
+    </properties>
+  </action>
+</actions>
